@@ -85,7 +85,7 @@ vendor) GLES yourself.
 
 ## Consuming it
 
-### FetchContent / add_subdirectory (recommended)
+### FetchContent / add_subdirectory
 
 A module library's real interface is its BMI, which is compiler- and
 version-specific and therefore not distributable as a binary. Every consumer
@@ -94,7 +94,7 @@ the most robust path:
 
 ```cmake
 include(FetchContent)
-FetchContent_Declare(gles_modules GIT_REPOSITORY https://git.vernizzi.io/vernizzi/gles-modules.git GIT_TAG master)
+FetchContent_Declare(gles_modules GIT_REPOSITORY https://github.com/vernizzi/gles-modules.git GIT_TAG master)
 FetchContent_MakeAvailable(gles_modules)
 
 target_link_libraries(app PRIVATE gles_modules::gles_modules)
