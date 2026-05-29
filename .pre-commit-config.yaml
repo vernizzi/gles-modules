@@ -1,0 +1,48 @@
+---
+# Pre-commit hooks for gles_modules.
+#   Install:        pre-commit install
+#   Run manually:   pre-commit run --all-files
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: check-yaml
+      - id: mixed-line-ending
+        args: [--fix=lf]
+        files: '(\.(h|hpp|c|cpp|cppm|in|yml|yaml|md|cmake)|CMakeLists\.txt)$'
+      - id: fix-byte-order-marker
+        files: '(\.(h|hpp|c|cpp|cppm|in|yml|yaml|md|cmake)|CMakeLists\.txt)$'
+      - id: trailing-whitespace
+        files: '(\.(h|hpp|c|cpp|cppm|in|yml|yaml|md|cmake)|CMakeLists\.txt)$'
+      - id: end-of-file-fixer
+        files: '(\.(h|hpp|c|cpp|cppm|in|yml|yaml|md|cmake)|CMakeLists\.txt)$'
+
+  - repo: https://github.com/lucas-c/pre-commit-hooks
+    rev: v1.5.6
+    hooks:
+      - id: remove-tabs
+        name: Tabs to 4 Spaces (code)
+        args: [--whitespaces-count, '4']
+        files: '(\.(h|hpp|cpp|cppm|c|cmake|in)|CMakeLists\.txt)$'
+
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v22.1.2
+    hooks:
+      - id: clang-format
+        files: '\.(h|hpp|c|cpp|cppm)$'
+
+  - repo: https://github.com/cheshirekow/cmake-format-precommit
+    rev: v0.6.13
+    hooks:
+      - id: cmake-lint
+        additional_dependencies: [pyyaml]
+
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.38.0
+    hooks:
+      - id: yamllint
+        args: ["-f=colored"]
+        exclude: '^\.clang-format$'

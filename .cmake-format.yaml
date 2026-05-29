@@ -1,0 +1,28 @@
+---
+# cmake-format / cmake-lint configuration for gles_modules.
+# Matches the project's clang-format settings (4-space indent).
+
+format:
+  line_width: 100
+  tab_size: 4
+  use_tabchars: false
+  separate_ctrl_name_with_space: false
+  separate_fn_name_with_space: false
+  dangle_parens: false
+  max_subgroups_hwrap: 4
+  max_pargs_hwrap: 6
+  enable_sort: false
+  autosort: false
+  command_case: lower
+  keyword_case: unchanged
+
+lint:
+  disabled_codes:
+    # C0103: Variable/function naming
+    # we use lower_case helpers and _underscore temps.
+    - C0103
+    # C0111: Missing docstring
+    # block-comment headers above sections are the convention.
+    - C0111
+    # C0301: Line too long — governed by line_width above.
+    - C0301
