@@ -1,0 +1,12 @@
+@PACKAGE_INIT@
+
+# Re-discover the OpenGL ES / EGL components this build of gles_modules needs.
+include(CMakeFindDependencyMacro)
+
+set(_gles_modules_api "@_gles_api@")
+set(_gles_modules_optional "@_gles_optional@")
+find_dependency(OpenGL COMPONENTS ${_gles_modules_api} OPTIONAL_COMPONENTS ${_gles_modules_optional})
+
+include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@-targets.cmake")
+
+check_required_components(@PROJECT_NAME@)
